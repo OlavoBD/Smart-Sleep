@@ -5,5 +5,5 @@ Sensor de temperatura + luz + Spotify → IA monta rotina de sono + playlist
 | Nome | GitHub |
 |------|--------|
 | [Olavo Belfante Dias] | [@OlavoBD] |
-| [Lorenzo Dias Lanzoni] | [@LorenzoDiasLanzoni] |
+| [Lorenzo Dias Lanzoni] | [@LorenzoDL] |
 | [Simão Kiaku Pedro Quanguluka] | [@Simao2026] |
