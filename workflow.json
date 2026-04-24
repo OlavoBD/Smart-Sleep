@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "form",
+      "name": "Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.temperatura > 25 || $json.luz === 'alta' }}"
+            }
+          ]
+        }
+      },
+      "id": "if",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.sampleapis.com/music/classical"
+      },
+      "id": "http",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "responseBody": "Ambiente inadequado para sono. Diminua a luz e ajuste a temperatura. Playlist relaxante 🎧"
+      },
+      "id": "bad",
+      "name": "Resposta Ruim",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "responseBody": "Ambiente ideal para dormir 😴 Playlist calma 🎧"
+      },
+      "id": "good",
+      "name": "Resposta Boa",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 400]
+    }
+  ],
+  "connections": {
+    "Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Resposta Boa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Resposta Ruim",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
