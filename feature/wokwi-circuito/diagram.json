@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -18.6, "left": -125.4, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -191.7,
+      "left": -15,
+      "attrs": { "temperature": "71.1", "humidity": "86.5" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 233.6,
+      "left": -258.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -3.6,
+      "left": -236.2,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 119.15,
+      "left": -220.8,
+      "attrs": { "value": "220000" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd2",
+      "top": -233.6,
+      "left": 130.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 243.95,
+      "left": -19.2,
+      "attrs": { "value": "10" }
+    }
+  ],
+  "connections": [
+    [ "dht1:VCC", "uno:5V", "red", [ "v0" ] ],
+    [ "dht1:GND", "uno:GND.3", "black", [ "v0" ] ],
+    [ "dht1:SDA", "uno:2", "green", [ "v0" ] ],
+    [ "r2:2", "uno:9", "green", [ "v-153.6", "h210" ] ],
+    [ "lcd2:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "lcd2:GND", "uno:GND.3", "black", [ "h0" ] ],
+    [ "lcd2:SDA", "uno:A4", "green", [ "h0" ] ],
+    [ "lcd2:SCL", "uno:A5", "green", [ "h0" ] ],
+    [ "led1:A", "r2:1", "green", [ "v0" ] ],
+    [ "uno:GND.2", "led1:C", "black", [ "v9.5", "h-284.1" ] ],
+    [ "ldr1:VCC", "r1:1", "red", [ "h0" ] ],
+    [ "r1:2", "uno:5V", "green", [ "v0" ] ],
+    [ "ldr1:AO", "uno:A0", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
